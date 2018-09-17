@@ -1,4 +1,13 @@
 <h1>My Products</h1>
-<input type="text" [(ngModel)]="productName"/>
-<button (click)="productName = 'A tree'" [disabled]="isDisabled">Change name</button>
-<div>{{ productName }}</div>
+<form (ngSubmit)="onAddProduct(f)" #f="ngForm">
+    <input type="text" ngModel name="productName" required />
+    <button type="submit">Add product</button>
+    <!-- <input *ngIf="!isDisabled" type="text" [(ngModel)]="productName" /> -->
+    <!-- <button *ngIf="!isDisabled" (click)="onAddProduct()">Add product</button> -->
+    <!--<button (click)="productName = 'A tree'" [disabled]="isDisabled">Change name</button> -->
+
+</form>
+<!-- <div>{{ productName }}</div> -->
+<!-- <div *ngFor="let product of products">{{ product }}</div> -->
+<!-- lo comento para mostrar custom property binding -->
+<app-product (productClicked)="onRemoveProduct(product)" *ngFor="let product of products" [productName]="product"></app-product>
